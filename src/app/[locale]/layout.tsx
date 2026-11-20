@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { JetBrains_Mono, Manrope, Playfair_Display } from "next/font/google";
 import { notFound } from "next/navigation";
 import { isLocale, locales } from "@/lib/i18n";
 import "../globals.css";
+
+const manrope = Manrope({ subsets: ["latin", "vietnamese"], variable: "--font-manrope" });
+const playfair = Playfair_Display({ subsets: ["latin", "vietnamese"], variable: "--font-playfair" });
+const jetbrains = JetBrains_Mono({ subsets: ["latin", "vietnamese"], variable: "--font-jetbrains" });
 
 export const dynamicParams = false;
 
@@ -25,5 +30,5 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function LocaleLayout({ children, params }: { children: ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return <html lang={locale}><body>{children}</body></html>;
+  return <html lang={locale}><body className={`${manrope.variable} ${playfair.variable} ${jetbrains.variable}`}>{children}</body></html>;
 }

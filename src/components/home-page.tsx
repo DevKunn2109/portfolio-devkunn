@@ -1,5 +1,6 @@
 import type { HomeContent } from "@/content/home";
 import type { Locale } from "@/lib/i18n";
+import { PointerAmbience } from "./pointer-ambience";
 import { ProjectVisual } from "./project-visual";
 import { SiteHeader } from "./site-header";
 
@@ -16,13 +17,14 @@ function ArrowIcon() {
 export function HomePage({ locale, content }: { locale: Locale; content: HomeContent }) {
   return (
     <div className="site-canvas">
+      <PointerAmbience />
       <a className="skip-link" href="#main">{content.skip}</a>
       <div className="ambient ambient-one" aria-hidden="true" />
       <div className="ambient ambient-two" aria-hidden="true" />
       <SiteHeader locale={locale} content={content} />
 
       <main id="main">
-        <section className="hero shell">
+        <section className="hero shell" data-reveal>
           <div className="hero-grid" aria-hidden="true" />
           <div className="hero-copy reveal">
             <div className="availability"><span aria-hidden="true" />{content.hero.cvUnavailable}</div>
@@ -60,7 +62,7 @@ export function HomePage({ locale, content }: { locale: Locale; content: HomeCon
           </div>
         </div>
 
-        <section className="approach section shell">
+        <section className="approach section shell" data-reveal>
           <div className="section-heading split-intro">
             <div><p className="section-kicker"><span>01</span>{content.approach.label}</p><h2>{content.approach.title}</h2></div>
             <p>{content.approach.body}</p>
@@ -72,14 +74,14 @@ export function HomePage({ locale, content }: { locale: Locale; content: HomeCon
           </div>
         </section>
 
-        <section className="projects section" id="projects">
+        <section className="projects section" id="projects" data-reveal>
           <div className="shell">
             <div className="section-heading project-heading">
               <p className="section-kicker"><span>02</span>{content.projects.label}</p><h2>{content.projects.title}</h2><p>{content.projects.body}</p>
             </div>
             <div className="project-list">
               {content.projects.items.map((project, index) => (
-                <article className="project" key={project.name}>
+                <article className="project" key={project.name} data-reveal>
                   <div className="project-topline"><span>0{index + 1}</span><p>{content.projects.draftLabel}</p></div>
                   <ProjectVisual variant={index === 0 ? "api" : "product"} label={project.visualLabel} />
                   <div className="project-copy">
@@ -92,18 +94,18 @@ export function HomePage({ locale, content }: { locale: Locale; content: HomeCon
           </div>
         </section>
 
-        <section className="services section shell" id="services">
+        <section className="services section shell" id="services" data-reveal>
           <div className="section-heading split-intro">
             <div><p className="section-kicker"><span>03</span>{content.services.label}</p><h2>{content.services.title}</h2></div><p>{content.services.body}</p>
           </div>
           <div className="service-list">
             {content.services.items.map((item, index) => (
-              <article key={item.title}><div className="service-icon" aria-hidden="true">/0{index + 1}</div><h3>{item.title}</h3><p>{item.body}</p><small>{item.deliverables}</small></article>
+              <article key={item.title} data-reveal><div className="service-icon" aria-hidden="true">/0{index + 1}</div><h3>{item.title}</h3><p>{item.body}</p><small>{item.deliverables}</small></article>
             ))}
           </div>
         </section>
 
-        <section className="about section" id="about">
+        <section className="about section" id="about" data-reveal>
           <div className="about-glow" aria-hidden="true" />
           <div className="shell about-grid">
             <div><p className="section-kicker light"><span>04</span>{content.about.label}</p><h2>{content.about.title}</h2></div>
@@ -111,14 +113,14 @@ export function HomePage({ locale, content }: { locale: Locale; content: HomeCon
           </div>
         </section>
 
-        <section className="writing section shell">
+        <section className="writing section shell" data-reveal>
           <div className="section-heading split-intro">
             <div><p className="section-kicker"><span>05</span>{content.writing.label}</p><h2>{content.writing.title}</h2></div><p>{content.writing.body}</p>
           </div>
           <div className="empty-state"><span aria-hidden="true">01</span><p>{content.writing.empty}</p><i aria-hidden="true"><ArrowIcon /></i></div>
         </section>
 
-        <section className="contact section" id="contact">
+        <section className="contact section" id="contact" data-reveal>
           <div className="contact-grid" aria-hidden="true" />
           <div className="shell contact-inner">
             <p className="section-kicker light"><span>06</span>{content.contact.label}</p><h2>{content.contact.title}</h2><p>{content.contact.body}</p>
