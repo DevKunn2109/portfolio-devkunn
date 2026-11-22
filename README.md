@@ -2,6 +2,15 @@
 
 Website giới thiệu bánh crepe sầu riêng và kết nối khách hỏi giá sỉ. Dùng Next.js App Router, React và TypeScript.
 
+Xem [kiến trúc storefront, SEO và quản trị](ARCHITECTURE.md).
+
+## Kích hoạt quản trị
+
+1. Tạo Supabase project cho cửa hàng hoặc xác nhận project riêng có thể dùng. Chạy migration `202611220001_bakery_store.sql`.
+2. Tạo tài khoản nhân viên trong Supabase Auth. Thêm UUID của người được quản trị vào `BAKERY_ADMIN_IDS`, phân tách bằng dấu phẩy. Cấu hình các giá trị ở `.env.example` trong môi trường Vercel. Khóa bí mật chỉ dùng trên máy chủ.
+3. Kiểm tra người chưa đăng nhập không đọc được phiếu sỉ và tài khoản được cấp quyền có thể lưu nội dung. Cấu hình giới hạn tần suất POST và thời hạn lưu phiếu trước khi bật `BAKERY_ENABLE_INQUIRIES=true`. Sau đó gửi thử để thấy trạng thái chờ liên hệ.
+4. Vào `/admin` để cập nhật sản phẩm, bài viết và slide. Dùng ảnh hoặc MP4 qua HTTPS do cửa hàng kiểm soát. Các nhãn ưu đãi, bán chạy và món mới do tiệm cập nhật.
+
 ## Quy trình thiết kế
 
 1. Xác định hai nhu cầu chính: xem bánh và tìm chi nhánh, hoặc hỏi báo giá cho đơn số lượng lớn.
