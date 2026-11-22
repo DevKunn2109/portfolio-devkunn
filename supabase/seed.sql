@@ -1,3 +1,0 @@
--- Intentionally empty.
--- Personal details, project claims, testimonials, metrics, and CV files must not
--- be seeded until the portfolio owner has supplied and approved them.
