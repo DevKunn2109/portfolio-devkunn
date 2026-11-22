@@ -1,47 +1,27 @@
-# DevKun Portfolio
+# Lò bánh sầu riêng Minh Châu
 
-Bilingual personal portfolio foundation built with Next.js App Router and strict TypeScript.
+Website giới thiệu bánh crepe sầu riêng và kết nối khách hỏi giá sỉ. Dùng Next.js App Router, React và TypeScript.
 
-## Local setup
+## Quy trình thiết kế
 
-1. Install Node.js 22 or newer.
-2. Run `npm install`.
-3. Copy `.env.example` to `.env.local` when Supabase integration begins.
-4. Run `npm run dev`, then open `http://localhost:3000`.
+1. Xác định hai nhu cầu chính: xem bánh và tìm chi nhánh, hoặc hỏi báo giá cho đơn số lượng lớn.
+2. Thiết kế luồng trang: ảnh bánh và lời giới thiệu → thông tin sản phẩm → soạn tin hỏi sỉ → chỉ đường đến cửa hàng.
+3. Áp dụng nền kem, vàng sầu riêng, xanh lá, tiêu đề serif và chữ nội dung hệ thống. Ưu tiên tương phản, thao tác bằng bàn phím và bố cục một cột trên điện thoại.
+4. Kiểm tra liên kết liên hệ, mẫu tin đặt sỉ, bố cục di động và metadata SEO trước khi phát hành.
 
-## Quality checks
+## Vận hành nội dung
 
-```bash
+- Thay thông tin liên hệ và chi nhánh tại `src/lib/bakery.ts`. Facebook dùng ID fanpage được đối chiếu qua các danh bạ công khai. Zalo dùng số hotline được cung cấp và cần chủ tiệm xác nhận tài khoản thực nhận.
+- Thay `public/crepe-sau-rieng.webp` bằng ảnh thật của tiệm khi có. Bản minh họa tạo bằng ImageGen với yêu cầu ảnh cận bánh crepe sầu riêng vàng cắt đôi trên đĩa gốm kem và ánh sáng tự nhiên.
+- Biểu mẫu gửi dữ liệu đến ứng dụng để tạo bản nháp, không ghi cơ sở dữ liệu. Khách tự gửi tin qua kênh đã chọn và nhận xác nhận trực tiếp từ tiệm.
+- SEO gồm tiêu đề, mô tả, canonical, Open Graph, dữ liệu có cấu trúc Bakery, robots và sitemap. Sửa domain trong `src/lib/bakery.ts` nếu đổi tên miền.
+
+## Kiểm tra
+
+```sh
+npm ci
 npm run lint
 npm run typecheck
 npm run build
+npm run dev
 ```
-
-## Current state
-
-Slice 1 implements the bilingual, responsive and accessible home experience plus the product and technical brief. All personal facts are placeholders, crawling is disabled, CV download is intentionally unavailable and no contact data is submitted.
-
-See `docs/PRODUCT-BRIEF.md` for scope, sitemap, journeys and delivery slices. See `docs/TECHNICAL-DECISIONS.md` for architecture and design decisions.
-
-## Information needed from the owner
-
-- Preferred public name/brand, role wording, biography and location/timezone visibility.
-- Verified experience, education, skills with evidence, certifications and social/contact links.
-- Project category, context, role, permitted images/links and verified outcomes for each case study.
-- Vietnamese and English CV PDFs.
-- Confirmed service boundaries and preferred enquiry budget/timeline options.
-- Privacy contact and retention policy confirmation.
-
-## Production
-
-Do not deploy this placeholder build. Remove the global crawler block only after real content, privacy wording, public Supabase policies and release checks have been approved.
-
-## Supabase development
-
-Reproducible database files live in `supabase/`:
-
-- `supabase/migrations/` contains ordered schema and RLS migrations.
-- `supabase/tests/database/` contains pgTAP policy and contract tests.
-- `supabase/seed.sql` is intentionally empty until owner-approved content exists.
-
-Public registration remains disabled. Create an administrator through a trusted Supabase Dashboard or server-side workflow, then add that user's UUID to `public.admin_users` with a service-role operation. Never expose the service-role key to browser code.
